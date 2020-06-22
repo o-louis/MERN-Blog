@@ -1,0 +1,19 @@
+POST http://localhost:8080/users/register
+content-type: application/json
+
+{
+    "name": "test",
+    "email": "toto@gmail.fr",
+    "password": "tata",
+    "passwordConfirm": "tata"
+}
+
+### 
+
+POST http://localhost:8080/users/login
+content-type: application/json
+
+{
+    "email": "toto@gmail.fr",
+    "password": "tataiii"
+}
