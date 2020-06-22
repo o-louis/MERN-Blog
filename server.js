@@ -10,7 +10,6 @@ dotenv.config({ path: "./server/.env"});
 
 // DB Config
 const URI = process.env.MONGO_URI;
-console.log(URI);
 mongoose.connect(URI, { useNewUrlParser: true, useUnifiedTopology: true } )
     .then(() => console.log("MongoDB connection is established..."))
     .catch(err => console.log(err));

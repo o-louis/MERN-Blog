@@ -12,18 +12,26 @@ router.use(cors());
 router.get('/infos', (req, res) => {
     const { authorization } = req.headers;
     const decoded = jwt.verify(authorization, process.env.JWT_SECRET_KEY);
-    console.log(decoded);
 
     User.findOne({
         _id: decoded._id
     }).then(user => {
         if (user) {
-            res.send(user);
+            res.send({
+                success: true,
+                infos: user
+            });
         } else {
-            res.send('User does not exist');
+            res.send({
+                success: false,
+                message: 'User does not exist'
+            });
         }
     }).catch(err => {
-        res.send('error: ' + err);
+        res.send({
+            success: false,
+            error: err
+        });
     });
 });
 
@@ -35,7 +43,7 @@ router.post("/register", (req, res) => {
     if (!name || !email || !password || !passwordConfirm) {
         return res.send({
             success: false,
-            message: "Field are not all filled"
+            message: "Fields are not all filled"
         });
     }
     
@@ -62,7 +70,6 @@ router.post("/register", (req, res) => {
                 password: hashedPassword
             });
 
-            console.log(newUser);
             newUser.save();
             res.send({
                 success: true,
@@ -80,7 +87,10 @@ router.post("/login", (req, res) => {
         if (user) {
             bcrypt.compare(password, user.password, (err, passwordsMatch) => {
                 if (err) {
-                    res.send('error: ' + err);
+                    res.send({
+                        success: false,
+                        error: err
+                    });
                     throw err;
                 }
 
@@ -91,7 +101,6 @@ router.post("/login", (req, res) => {
                         email: user.email
                     }
 
-                    console.log(payload);
                     let token = jwt.sign(
                         payload,
                         process.env.JWT_SECRET_KEY,
@@ -99,16 +108,28 @@ router.post("/login", (req, res) => {
                             expiresIn: process.env.JWT_EXPIRES_IN
                         }
                     );
-                    res.send(token);
+                    res.send({
+                        success: true,
+                        token: token
+                    });
                 } else {
-                    res.send({ error: 'Password incorrect' });
+                    res.send({ 
+                        success: false,
+                        message: 'Password incorrect'
+                    });
                 }
             });
         } else {
-            res.send({ error: 'User does not exist' });
+            res.send({
+                success: false,
+                message: 'User does not exist'
+            });
         }
     }).catch(err => {
-        res.send('error: ' + err);
+        res.send({
+            success: false,
+            error: err
+        });
     });
 });
 
