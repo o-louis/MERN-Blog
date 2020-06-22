@@ -17,3 +17,14 @@ content-type: application/json
     "email": "toto@gmail.fr",
     "password": "tataiii"
 }
+
+### 
+
+POST http://localhost:8080/articles/add
+content-type: application/json
+
+{
+    "title": "Title",
+    "description": "Description",
+    "author": "olouis"
+}

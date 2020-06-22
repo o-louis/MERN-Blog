@@ -92,6 +92,7 @@ router.post("/login", (req, res) => {
                         error: err
                     });
                     throw err;
+                    return;
                 }
 
                 if (passwordsMatch) {
@@ -132,8 +133,5 @@ router.post("/login", (req, res) => {
         });
     });
 });
-
-
-
 
 module.exports = router;

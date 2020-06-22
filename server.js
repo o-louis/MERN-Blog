@@ -20,6 +20,7 @@ app.use(express.json());
 
 // Routes
 app.use("/users", require("./server/routes/auth"));
+app.use("/articles", require("./server/routes/articles"));
 
 // Server connection
 const PORT = process.env.PORT || 5000;
