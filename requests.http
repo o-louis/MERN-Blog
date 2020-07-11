@@ -9,22 +9,40 @@ content-type: application/json
 }
 
 ### 
-
 POST http://localhost:8080/users/login
 content-type: application/json
 
 {
     "email": "toto@gmail.fr",
-    "password": "tataiii"
+    "password": "tata"
 }
 
 ### 
+GET http://localhost:8080/users/infos
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWYwZjZjN2RhZThjNzJjMjRiZjBjOGMiLCJuYW1lIjoidGVzdCIsImVtYWlsIjoidG90b0BnbWFpbC5mciIsImlhdCI6MTU5Mjg1ODQyNiwiZXhwIjoxNTk4MDQyNDI2fQ.j915StCqKC96olf9_C2EI_j9p4k9-XKG-9TiagJkm8c
 
+
+### 
 POST http://localhost:8080/articles/add
 content-type: application/json
 
 {
-    "title": "Title",
-    "description": "Description",
-    "author": "olouis"
+    "title": "Adventure",
+    "description": "Join me if you are interested",
+    "author": "James"
 }
+
+###
+PUT http://localhost:8080/articles/edit/5f0a0e44c7b8c451205ea33c
+content-type: application/json
+
+{
+    "title": "Adventure",
+    "description": "Do not join me if you are not motivated"
+}
+
+###
+DELETE http://localhost:8080/articles/delete/5f0a0e44c7b8c451205ea33c
+
+###
+GET http://localhost:8080/articles

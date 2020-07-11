@@ -8,10 +8,13 @@ const User = require("../models/User");
 
 router.use(cors());
 
+
+
 // GET
 router.get('/infos', (req, res) => {
     const { authorization } = req.headers;
-    const decoded = jwt.verify(authorization, process.env.JWT_SECRET_KEY);
+    const token = authorization && authorization.split(' ')[1];
+    const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
 
     User.findOne({
         _id: decoded._id
@@ -27,12 +30,7 @@ router.get('/infos', (req, res) => {
                 message: 'User does not exist'
             });
         }
-    }).catch(err => {
-        res.send({
-            success: false,
-            error: err
-        });
-    });
+    }).catch(err => res.status(400).json("Error: " + err));
 });
 
 
@@ -76,7 +74,7 @@ router.post("/register", (req, res) => {
                 message: "User is registered successfully"
             });
         }
-    }).catch((err) => console.log(err));
+    }).catch(err => res.status(400).json("Error: " + err));
 });
 
 router.post("/login", (req, res) => {
@@ -126,12 +124,7 @@ router.post("/login", (req, res) => {
                 message: 'User does not exist'
             });
         }
-    }).catch(err => {
-        res.send({
-            success: false,
-            error: err
-        });
-    });
+    }).catch(err => res.status(400).json("Error: " + err));
 });
 
 module.exports = router;
