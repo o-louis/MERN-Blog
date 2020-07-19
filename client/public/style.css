@@ -1,0 +1,112 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
+
+body {
+    font-size: 10px;
+    width: 100vw;
+    font-family: Roboto, sans-serif;
+}
+
+:root {
+    --bg-dark: #242424;
+    --text-light: white;
+    --text-grey: grey;
+}
+
+/* NAVBAR */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 4rem;
+    background-color:var(--bg-dark);
+    padding: 1.2rem;
+}
+
+.navbar a {
+    font-size: 1.5rem;
+    color: var(--text-light);
+}
+
+/* POSTS LIST */
+main {
+    width: 100vw;
+    position: relative;
+    margin-top: 4rem;
+}
+
+
+main h2 {
+    max-width: 60%;
+    font-size: 1.1rem;
+    margin: 8rem auto 0;
+}
+
+.posts-list-container {
+    max-width:60%;
+    height: auto;
+    margin: 2.2rem auto 0;
+    display: flex;
+    flex-flow: row wrap;
+    /* border: 1px solid red; */
+    /* justify-content: space-between; */
+}
+
+.posts-list-item {
+    width: 30%;
+    height: 23rem;
+    border: 1px solid grey;
+    margin-bottom: 2rem;
+    margin-right: 1rem;
+    position: relative;
+}
+
+.posts-list-item a {
+    color: black;
+}
+
+.posts-list-item-img {
+    width: 100%;
+}
+
+.posts-list-item-img img {
+    max-width: 100%;
+    height: auto;
+}
+
+.posts-list-item-infos {
+    padding: 1rem;
+}
+
+.posts-list-item-infos-title {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.posts-list-item-infos-description {
+    font-size: 0.9rem;
+}
+
+.posts-list-item-signature {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1rem 0.6rem;
+}
+
+.posts-list-item-signature-date {
+    color: var(--text-grey);
+    font-size: 0.8rem;
+}
+
+.posts-list-item-signature-author {
+    font-style: italic;
+    font-size: 0.7rem;
+}

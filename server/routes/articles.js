@@ -5,9 +5,18 @@ const Article = require("../models/Article");
 
 // POST
 
-/* GET */
+/* GET ALL ARTICLES*/
 router.get("/", (req, res) => {
     Article.find()
+        .then((article) => {
+            res.send(article);
+        }).catch(err => res.status(400).json("Error: "+ err));
+});
+
+/* GET ARTICLE */
+router.get("/:_id", (req, res) => {
+    const { _id } = req.params;
+    Article.findById(_id)
         .then((article) => {
             res.send(article);
         }).catch(err => res.status(400).json("Error: "+ err));
