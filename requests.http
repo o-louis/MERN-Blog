@@ -2,10 +2,10 @@ POST http://localhost:8080/users/register
 content-type: application/json
 
 {
-    "name": "test",
-    "email": "toto@gmail.fr",
-    "password": "tata",
-    "passwordConfirm": "tata"
+    "name": "Allan",
+    "email": "allan@gmail.com",
+    "password": "toto",
+    "passwordConfirm": "toto"
 }
 
 ### 
@@ -13,13 +13,13 @@ POST http://localhost:8080/users/login
 content-type: application/json
 
 {
-    "email": "toto@gmail.fr",
-    "password": "tata"
+    "email": "allan@gmail.com",
+    "password": "toto"
 }
 
 ### 
 GET http://localhost:8080/users/infos
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWYwZjZjN2RhZThjNzJjMjRiZjBjOGMiLCJuYW1lIjoidGVzdCIsImVtYWlsIjoidG90b0BnbWFpbC5mciIsImlhdCI6MTU5Mjg1ODQyNiwiZXhwIjoxNTk4MDQyNDI2fQ.j915StCqKC96olf9_C2EI_j9p4k9-XKG-9TiagJkm8c
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjE0ODU3N2VkMzJhMjM5YjA4ZjhiNjMiLCJuYW1lIjoiQWxsYW4iLCJlbWFpbCI6ImFsbGFuQGdtYWlsLmNvbSIsImlhdCI6MTU5NTE4MDQzMCwiZXhwIjoxNjAwMzY0NDMwfQ.BukHi0dj0vNI8JN20gkM29FXk4aMKrkuBZVLy49Oq9g
 
 
 ### 
@@ -27,9 +27,9 @@ POST http://localhost:8080/articles/add
 content-type: application/json
 
 {
-    "title": "Corona",
-    "description": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.",
-    "author": "Jasmin"
+    "title": "How Artificial Intelligence is Influencing the Drone Industry",
+    "description": "PALM BEACH, Florida, July 16, 2020 /PRNewswire/ -- The global Artificial Intelligence (AI) -based Drone Software market size is expected to continue its rapid growth through the next five years, according to several reports. A Research And Markets report said that: \"Digital industries are now implementing AI in their devices to improve in their fields across the globe. Application of AI in drone is one such advancement which has brought a revolutionary change in the operations of the industries. AI enables storing and managing the data in bulk which enables the drones to give better performance. The application of AI can enable the drones to function as per the user's command and with longer distance coverage. In addition, AI integrated drone enables the industries to keep a bird-eye view of the land for vigilance & mapping purpose.  The increased income levels have brought up new demands that have resulted in increasing supply of goods. Manufacturers are bringing in new features by implementing AI in their devices such as mobiles so as to make more appeal for the consumers to buy. So, the adoption in smartphones and increasing demands in aerial and drone services has made manufacturers to implement AI in drones across the globe. The drones are being in use over various s sectors such as agriculture, military and defense, media and entertainment, and others. Hence it is expected that AI-integrated drones will have significant growth in the near future.  Active tech companies in the markets this week include Plymouth Rock Technologies Inc. (CSE: PRT) (OTCQB: PLRTF), Draganfly Inc. (OTCQB: DFLYF) (CSE: DFLY), Drone Delivery Canada Corp. (OTCQX: TAKOF) (TSX-V: FLT.V), Kratos Defense & Security Solutions, Inc. (NASDAQ: KTOS), AgEagle Aerial Systems, Inc. (NYSE: UAVS).\"",
+    "author": "Allan"
 }
 
 ###

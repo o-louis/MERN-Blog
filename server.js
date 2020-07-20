@@ -1,8 +1,11 @@
 const express        = require("express");
 const mongoose       = require("mongoose");
 const dotenv         = require("dotenv");
+const cors           = require("cors");
 
 const app = express();
+
+app.use(cors())
 
 // Dev environement
 if (process.env.NODE_ENV !== "production") require("dotenv").config();
