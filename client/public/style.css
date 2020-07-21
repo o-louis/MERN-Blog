@@ -37,6 +37,8 @@ body {
     background-color:var(--bg-dark);
     padding: 1.2rem;
     z-index: 1;
+    display: flex;
+    justify-content: space-between;
 }
 
 .navbar a {
@@ -164,6 +166,106 @@ main h2 {
     margin-top: 50px;
     font-size: 0.9rem;
     text-decoration: underline;
+}
+
+/* CONNECTIONS */
+.connection-container {
+    max-width: 50%;
+    height: auto;
+    margin: 8rem auto 0;
+    padding: 2rem;
+    border-radius: 3px;
+    position: relative;
+}
+
+.connection-overlay {
+    width: 100%;
+    height: 26rem;
+    background-color: var(--bg-dark);
+    z-index: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding:4.5rem;
+    color: white;
+    /* flex-direction: column; */
+}
+
+.connection-overlay-login {
+    text-align: center;
+}
+
+.connection-overlay-login h3 {
+    text-transform: uppercase;
+    letter-spacing: 0.12rem;
+    margin-bottom: 1.2rem;
+    font-size: 1rem;
+    font-weight: 400;
+}
+.connection-overlay-login button {
+    border: 2px solid white;
+    background-color: transparent;
+    border-radius: 2px;
+    padding: 0.7rem 1.5rem;
+    color: white;
+}
+
+.connection-overlay-login button:hover {
+    background-color: white;
+}
+.connection-overlay-login button:hover a {
+    color: var(--bg-dark);
+}
+
+.connection-overlay-login a {
+    color: white;
+    text-transform: uppercase;
+}
+
+.connection-form {
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 6rem;
+    width: 40%;
+    height: 30rem;
+    background-color: #f5f5f5;
+    border-radius: 3px;
+    padding: 1.5rem;
+}
+.connection-form h1 {
+    margin: 0.5rem auto 2rem;
+    text-transform: uppercase;
+}
+
+.connection-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.connection-form input {
+    width: 100%;
+    padding: 0.9rem;
+    margin-bottom: 2rem;
+    border: none;
+    border-radius: 3px;
+    font-size: 0.9rem;
+}
+
+input.btn-submit {
+    background-color: #FFD166;
+    cursor: pointer;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.btn-submit:hover {
+    background-color: #FFE099;
+}
+
+.connection-form input::placeholder {
+    font-size: 0.9rem;
 }
 
 /* MEDIA QUERIES */
