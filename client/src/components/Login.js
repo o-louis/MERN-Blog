@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from './Navbar';
 import { login } from '../requests';
 import { Redirect } from 'react-router-dom';
+import LoginForm from './LoginForm';
 
 class Login extends React.Component {
     constructor(props) {
@@ -38,7 +39,7 @@ class Login extends React.Component {
         const { redirectToReferrer } = this.state;
         
         if (redirectToReferrer) {
-            return <Redirect to="/"/>
+            return <Redirect to="/" />
         } else {
             return (
                 <>
@@ -53,36 +54,11 @@ class Login extends React.Component {
                                     </button>
                                 </div>
                             </div>
-
-                            <div className="connection-form">
-                                <h1>Login</h1>
-                                <form onSubmit={this.handleSubmit}>
-
-                                    <input
-                                    type="email"
-                                    id="email"
-                                    name="email"
-                                    placeholder="Email"
-                                    value={this.state.email}
-                                    onChange={this.handleChange}/>
-
-                                    <input
-                                    type="password"
-                                    id="password"
-                                    name="password"
-                                    placeholder="Password"
-                                    value={this.state.password}
-                                    onChange={this.handleChange}/>
-
-                                    {this.state.errorMessage !== null ? 
-                                    <span className="connection-form-error">
-                                        {this.state.errorMessage}
-                                    </span> :
-                                    <></>}
-
-                                    <input type="submit" value="Log in" className="btn-submit"/>
-                                </form>
-                            </div>
+                            <LoginForm
+                                state={this.state}
+                                handleSubmit={this.handleSubmit}
+                                handleChange={this.handleChange}
+                            />
                         </div>
                     </main>
                 </>

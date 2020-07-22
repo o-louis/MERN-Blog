@@ -1,5 +1,6 @@
 import React from 'react';
 import Navbar from './Navbar';
+import SignUpForm from './SignUpForm';
 import { createUser } from '../requests';
 import { Redirect } from 'react-router-dom';
 
@@ -47,7 +48,6 @@ class SignUp extends React.Component {
                     <Navbar />
                     <main>
                         <div className="connection-container">
-
                             <div className="connection-overlay">
                                 <div className="connection-overlay-login">
                                     <h3>Already have an account ?</h3>
@@ -56,51 +56,11 @@ class SignUp extends React.Component {
                                     </button>
                                 </div>
                             </div>
-
-                            <div className="connection-form">
-                                <h1>Sign up</h1>
-                                <form onSubmit={this.handleSubmit}>
-                                    <input
-                                    type="text"
-                                    id="username"
-                                    name="name"
-                                    placeholder="Username" 
-                                    value={this.state.name}
-                                    onChange={this.handleChange}/>
-
-                                    <input
-                                    type="email"
-                                    id="email"
-                                    name="email"
-                                    placeholder="Email"
-                                    value={this.state.email}
-                                    onChange={this.handleChange}/>
-
-                                    <input
-                                    type="password"
-                                    id="password"
-                                    name="password"
-                                    placeholder="Password"
-                                    value={this.state.password}
-                                    onChange={this.handleChange}/>
-
-                                    <input
-                                    type="password"
-                                    id="passwordConfirm"
-                                    name="passwordConfirm"
-                                    placeholder="Confirm your password"
-                                    value={this.state.passwordConfirm}
-                                    onChange={this.handleChange}/>
-
-                                    {this.state.errorMessage !== null ? 
-                                    <span className="connection-form-error">
-                                        {this.state.errorMessage}
-                                    </span> :
-                                    <></>}
-
-                                    <input type="submit" value="Create account" className="btn-submit"/>
-                                </form>
-                            </div>
+                            <SignUpForm
+                                state={this.state}
+                                handleSubmit={this.handleSubmit}
+                                handleChange={this.handleChange}
+                            />
                         </div>
                     </main>
                 </>
