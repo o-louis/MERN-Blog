@@ -11,29 +11,28 @@ export const fetchArticle = async (id) => {
 
 export const createUser = async (data) => {
     const { name, email, password, passwordConfirm } = data;
-    axios.post(Constants.CREATE_USER, {
+    return axios.post(Constants.CREATE_USER, {
         name,
         email,
         password,
         passwordConfirm
       })
       .then((response) => {
-        console.log(response);
+        return response;
       }, (error) => {
-        console.log(error);
+        return error
       });
 }
 
 export const login = async (data) => {
   const { email, password } = data;
-  axios.post(Constants.LOGIN, {
+  return axios.post(Constants.LOGIN, {
       email,
       password
     })
     .then((response) => {
-      console.log(response);
-      return response.data;
+      return response;
     }, (error) => {
-      console.log(error);
+      return error;
     });
 }
