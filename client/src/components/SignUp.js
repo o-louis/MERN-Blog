@@ -41,7 +41,10 @@ class SignUp extends React.Component {
         const { redirectToReferrer } = this.state;
 
         if (redirectToReferrer) {
-            return <Redirect to="/login" message="You have been successfully registered"/>
+            return <Redirect to={{
+                pathname: "/login",
+                state: { message: "You have been successfully registered" }
+            }} />
         } else {
             return (
                 <>

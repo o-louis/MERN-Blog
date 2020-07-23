@@ -12,10 +12,19 @@ class Login extends React.Component {
             password: "",
             redirectToReferrer: false,
             errorMessage: null,
+            success: null,
         };
+
+        
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    componentDidMount(){
+        if (this.props.location && this.props.location.state) {
+            this.setState( { success: this.props.location.state.message})
+        }
     }
 
     handleChange(event) {
@@ -45,6 +54,7 @@ class Login extends React.Component {
                 <>
                     <Navbar />
                     <main>
+                        {this.state.success && <h4>{this.state.success}</h4>}
                         <div className="connection-container">
                             <div className="connection-overlay">
                                 <div className="connection-overlay-login">
