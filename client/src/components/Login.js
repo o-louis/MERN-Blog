@@ -54,7 +54,6 @@ class Login extends React.Component {
                 <>
                     <Navbar />
                     <main>
-                        {this.state.success && <h4>{this.state.success}</h4>}
                         <div className="connection-container">
                             <div className="connection-overlay">
                                 <div className="connection-overlay-login">
@@ -64,6 +63,7 @@ class Login extends React.Component {
                                     </button>
                                 </div>
                             </div>
+                            {this.state.success && <h4>{this.state.success}</h4>}
                             <LoginForm
                                 state={this.state}
                                 handleSubmit={this.handleSubmit}

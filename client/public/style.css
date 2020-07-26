@@ -1,5 +1,13 @@
-/* BASICS */
+/* 
+** 320px — 480px: Mobile devices
+** 481px — 768px: iPads, Tablets
+** 769px — 1024px: Small screens, laptops
+** 1025px — 1200px: Desktops, large screens
+** 1201px and more —  Extra large screens, TV
+*/
 
+
+/* BASICS */
 * {
     margin: 0;
     padding: 0;
@@ -13,22 +21,247 @@ html {
     font-size: 62.5%;
 }
 
+body {
+    width: 100vw;
+    height: 100vh;
+    font-size: 1.4rem;
+    overflow-x: hidden;
+    position: relative;
+    font-family: Roboto, sans-serif;
+}
+
 a {
     color: inherit;
     text-decoration: inherit;
 }
 
-body {
-    width: 100vw;
-    height: 100vh;
-    font-size: 1.4rem;
-    font-family: Roboto, sans-serif;
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+main {
+    padding: 0% 5%;
+    margin-top: 110px;
+}
+
+:root {
+    --dark-grey: #242424;
+    --dark-white: #ededed;
+    --yellow: #f5c556;
 }
 
 /* NAVBAR */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 60px;
+    color: white;
+    background-color: var(--dark-grey);
+}
+
+.navbar-list {
+    width: 100%;
+    height: 100%;
+    padding: 3%;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-list-item-link {
+    font-size: 1.8rem;
+}
 
 /* HOME - ARTICLES */
+.posts-container-title {
+    font-size: 1.9rem;
+    margin-bottom: 8%;
+}
+
+.posts-container-list {
+    display: grid;
+    grid-template-columns: 100%;
+}
+
+.posts-list-item {
+    margin-bottom: 10%;
+    background-color: var(--dark-white);
+    border-radius: 3px;
+}
+
+.posts-list-item-img {
+    overflow-y: hidden;
+    height: 160px;
+}
+
+.posts-list-item-infos,
+.posts-list-item-signature {
+    padding: 3%;
+}
+
+.posts-list-item-infos-title {
+    margin-bottom: 3%;
+    font-size: 1.5rem;
+}
+
+.posts-list-item-signature {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+}
 
 /* ARTICLE */
+.article-container {
+    margin: auto;
+    max-width: 1000px;
+    width: 100%;
+}
+
+.article-title {
+    font-size: 2rem;
+    line-height: 1.3;
+}
+.article-date {
+    text-align: end;
+    margin: 30px 0 20px;
+    font-style: italic;
+}
+
+.article-description {
+    line-height: 1.7;
+    font-size: 1.6rem;
+    text-align: justify;
+    background-color: var(--dark-white);
+    padding: 3% 5%;
+    border-radius: 4px;
+}
+
+.article-author {
+    margin: 10% 0%;
+}
 
 /* CONNECTION ACCOUNT */
+
+.connection-overlay {
+    background-color: black;
+    padding: 3%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.connection-overlay-login h3 {
+    text-transform: uppercase;
+    font-weight: 400;
+}
+
+.connection-overlay-login button {
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+    border-radius: 3px;
+    padding: 2% 10%;
+    margin-top: 5%;
+}
+
+.connection-overlay-login button:hover {
+    background-color: white;
+    color: black;
+}
+
+.connection-form {
+    margin-top: 10%;
+    /* border: 1px solid grey; */
+    padding: 3% 2%;
+}
+
+.connection-form form {
+    margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+}
+
+.connection-form input {
+    width: 100%;
+    background-color: var(--dark-white);
+    margin-bottom: 4%;
+    padding: 4%;
+    border-radius: 4px;
+}
+
+.connection-form input.btn-submit {
+    margin-top: 5%;
+    background-color: var(--yellow);
+    text-transform: uppercase;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+.connection-form input.btn-submit:hover {
+    opacity: 0.9;
+}
+
+.connection-container h4 {
+    padding: 4%;
+    color: white;
+    background-color: #00a930;
+    margin-top: 5%;
+    border-radius: 3px;
+}
+
+@media screen and (min-width: 481px) {
+    .posts-container-list {
+        grid-template-columns: 50% 50%;
+    }
+
+    .posts-list-item {
+        margin-right: 4%;
+    }
+
+    .article-title {
+        text-align: center;
+    }
+
+    .article-author {
+        margin: 5% 0%;
+    }
+
+    .connection-container {
+        max-width: 600px;
+        width: 100%;
+        margin: auto;
+    }
+}
+
+@media screen and (min-width: 769px) {
+
+    .navbar-list {
+        padding: 2%;
+    }
+
+    .posts-container-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .posts-container-title {
+        margin-bottom: 3%;
+    }
+
+    .posts-container {
+        max-width: 1400px;
+        width: 100%;
+    }
+
+    .article-title {
+        font-size: 2.5rem;
+    }
+
+    .article-description {
+        font-size: 1.7rem;
+        line-height: 1.9;
+    }
+}

@@ -14,9 +14,11 @@ const Posts = () => {
     }, []);
 
     return (
-        <main >
-            <h2>Our latest news, updates, and stories</h2>
-            <div className="posts-list-container">
+        <main className="posts-container">
+            <h1 className="posts-container-title">
+                Our latest news, updates, and stories
+            </h1>
+            <div className="posts-container-list">
                 {
                     data.map((item, index) =>  {
                         return <PostItem item={{value: item ,index}} key={index} />

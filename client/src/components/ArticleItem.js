@@ -12,10 +12,10 @@ function ArticleItem(props) {
     return (
         <main>
             <div className="article-container">
-                <h1>{title}</h1>
+                <h1 className="article-title">{title}</h1>
 
                 <p className="article-date">
-                    { convertDate(date) }
+                    { convertDate(date) }   
                 </p>
                 <p className="article-description">
                     { description }
