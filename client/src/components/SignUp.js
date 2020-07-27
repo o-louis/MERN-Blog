@@ -29,6 +29,7 @@ class SignUp extends React.Component {
         createUser(this.state).then(response => {
             if (response.data) {
                 if (response.data.success) {
+                    console.log(response.data);
                     this.setState({ redirectToReferrer: true });
                 } else {
                     this.setState({ errorMessage: response.data.message });

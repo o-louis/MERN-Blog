@@ -15,15 +15,14 @@ class Login extends React.Component {
             success: null,
         };
 
-        
-
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentDidMount(){
+        console.log(this.props);
         if (this.props.location && this.props.location.state) {
-            this.setState( { success: this.props.location.state.message})
+            this.setState({ success: this.props.location.state.message })
         }
     }
 
@@ -36,6 +35,8 @@ class Login extends React.Component {
         login(this.state).then(response => {
             if (response.data) {
                 if (response.data.success) {
+                    console.log(response.data);
+                    this.props.handleSuccessfullAuth(response.data.token);
                     this.setState({ redirectToReferrer: true });
                 } else {
                     this.setState({ errorMessage: response.data.message });
