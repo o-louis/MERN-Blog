@@ -1,5 +1,4 @@
 import React from 'react';
-import Navbar from './Navbar';
 import SignUpForm from './SignUpForm';
 import { createUser } from '../requests';
 import { Redirect } from 'react-router-dom';
@@ -49,7 +48,6 @@ class SignUp extends React.Component {
         } else {
             return (
                 <>
-                    <Navbar />
                     <main>
                         <div className="connection-container">
                             <div className="connection-overlay">

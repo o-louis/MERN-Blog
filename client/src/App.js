@@ -3,7 +3,9 @@ import Home from "./components/Home";
 import Article from "./components/Article";
 import SignUp from "./components/SignUp";
 import Login from "./components/Login.js";
+import NewArticle from "./components/NewArticle.js";
 import RequireAuth from "./auth.js";
+import Navbar from "./components/Navbar.js"
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 class App extends React.Component {
@@ -14,6 +16,7 @@ class App extends React.Component {
         };
         this.handleSuccessfulAuth = this.handleSuccessfulAuth.bind(this);
         this.isLoggedIn = this.isLoggedIn.bind(this);
+        this.handleLogout = this.handleLogout.bind(this);
     }
 
     componentDidMount() {
@@ -26,6 +29,12 @@ class App extends React.Component {
         return storedUserToken ? true : false;
     }
 
+    handleLogout(e) {
+        e.preventDefault();
+        localStorage.removeItem("userToken");
+        this.setState({ loggedIn: false });
+    }
+
     handleSuccessfulAuth(userToken) {
         localStorage.setItem("userToken", userToken);
         this.setState({ loggedIn: true });
@@ -34,6 +43,7 @@ class App extends React.Component {
     render() {
         return (
             <div className="wrapper">
+                <Navbar isLoggedIn={this.state.loggedIn} handleLogout={this.handleLogout} />
                 <Router>
                     <Switch>
                         <Route exact path="/" component={Home} />
@@ -49,6 +59,7 @@ class App extends React.Component {
                         <RequireAuth
                             isLoggedIn={this.isLoggedIn}
                             handleSuccessfulAuth={this.handleSuccessfulAuth}>
+                                <Route path="/add/article" component={NewArticle} />
                         </RequireAuth>
                     </Switch>
                 </Router>

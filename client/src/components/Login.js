@@ -1,5 +1,4 @@
 import React from 'react';
-import Navbar from './Navbar';
 import { login } from '../requests';
 import { Redirect } from 'react-router-dom';
 import LoginForm from './LoginForm';
@@ -52,7 +51,6 @@ class Login extends React.Component {
         } else {
             return (
                 <>
-                    <Navbar />
                     <main>
                         <div className="connection-container">
                             <div className="connection-overlay">

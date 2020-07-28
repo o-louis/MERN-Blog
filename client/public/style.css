@@ -51,6 +51,10 @@ main {
     --yellow: #f5c556;
 }
 
+.wrapper {
+    position: relative;
+}
+
 /* NAVBAR */
 .navbar {
     position: fixed;
@@ -75,7 +79,14 @@ main {
     font-size: 1.8rem;
 }
 
+
+
 /* HOME - ARTICLES */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+}
 .posts-container-title {
     font-size: 1.9rem;
     margin-bottom: 8%;
@@ -84,10 +95,11 @@ main {
 .posts-container-list {
     display: grid;
     grid-template-columns: 100%;
+    grid-gap: 2% 0;
 }
 
 .posts-list-item {
-    margin-bottom: 10%;
+    /* margin-bottom: 10%; */
     background-color: var(--dark-white);
     border-radius: 3px;
 }
@@ -175,7 +187,6 @@ main {
 
 .connection-form {
     margin-top: 10%;
-    /* border: 1px solid grey; */
     padding: 3% 2%;
 }
 
@@ -214,13 +225,41 @@ main {
 }
 
 @media screen and (min-width: 481px) {
-    .posts-container-list {
-        grid-template-columns: 50% 50%;
+    .addArticle {
+        padding:10px;
+        background-color: black;
+        color: white;
+        font-size: 1.4rem;
+        align-self: flex-start;
+        border-radius: 5px;
+        cursor: pointer;
     }
 
-    .posts-list-item {
-        margin-right: 4%;
+    .addArticle:hover {
+        background-color: var(--yellow);
     }
+
+    .logout {
+        border: 1px solid white;
+        padding: 6px;
+        border-radius: 4px;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    .logout:hover {
+        background-color: white;
+        color: black;
+    }
+
+    .posts-container-list {
+        grid-template-columns: 50% 50%;
+        grid-gap: 1.8% 1%;
+    }
+
+    /* .posts-list-item {
+        margin-right: 4%;
+    } */
 
     .article-title {
         text-align: center;

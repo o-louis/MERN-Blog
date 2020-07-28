@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from './Navbar';
 import ArticleItem from './ArticleItem';
 import { fetchArticle } from '../requests';
 
@@ -15,10 +14,7 @@ function Article(props) {
     }, [id]);
 
     return (
-        <>
-            <Navbar />
-            <ArticleItem data={data} />
-        </>
+        <ArticleItem data={data} />
     );
 }
 

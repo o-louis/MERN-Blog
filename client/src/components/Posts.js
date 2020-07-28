@@ -15,9 +15,12 @@ const Posts = () => {
 
     return (
         <main className="posts-container">
-            <h1 className="posts-container-title">
-                Our latest news, updates, and stories
-            </h1>
+            <div className="header">
+                <h1 className="posts-container-title">
+                    Our latest news, updates, and stories
+                </h1>
+                <a href="/add/article" className="addArticle">Create a new article</a>
+            </div>
             <div className="posts-container-list">
                 {
                     data.map((item, index) =>  {
