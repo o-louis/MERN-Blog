@@ -56,7 +56,6 @@ class App extends React.Component {
                                 <Login {...props} handleSuccessfullAuth={this.handleSuccessfullAuth} />
                             )}
                         />
-                        {/* <Route path="/article/:_id" component={ () => this.checkLoginStatus(Article) } /> */}
                         <RequireAuth>
                             <Route path="/article/:_id" component={Article} />
                         </RequireAuth>

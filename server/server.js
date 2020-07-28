@@ -9,7 +9,7 @@ app.use(cors())
 
 // Dev environement
 if (process.env.NODE_ENV !== "production") require("dotenv").config();
-dotenv.config({ path: "./server/.env"});
+dotenv.config({ path: "./.env"});
 
 // DB Config
 const URI = process.env.MONGO_URI;
@@ -22,8 +22,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // Routes
-app.use("/users", require("./server/routes/auth"));
-app.use("/articles", require("./server/routes/articles"));
+app.use("/users", require("./routes/auth"));
+app.use("/articles", require("./routes/articles"));
 
 // Server connection
 const PORT = process.env.PORT || 5000;
