@@ -20,7 +20,6 @@ class Login extends React.Component {
     }
 
     componentDidMount(){
-        console.log(this.props);
         if (this.props.location && this.props.location.state) {
             this.setState({ success: this.props.location.state.message })
         }
@@ -36,7 +35,7 @@ class Login extends React.Component {
             if (response.data) {
                 if (response.data.success) {
                     console.log(response.data);
-                    this.props.handleSuccessfullAuth(response.data.token);
+                    this.props.handleSuccessfulAuth(response.data.token);
                     this.setState({ redirectToReferrer: true });
                 } else {
                     this.setState({ errorMessage: response.data.message });

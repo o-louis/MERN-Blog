@@ -3,7 +3,8 @@ import Home from "./components/Home";
 import Article from "./components/Article";
 import SignUp from "./components/SignUp";
 import Login from "./components/Login.js";
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import RequireAuth from "./auth.js";
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 class App extends React.Component {
     constructor(props) {
@@ -11,39 +12,26 @@ class App extends React.Component {
         this.state = {
             loggedIn: false
         };
-
-        this.handleSuccessfullAuth = this.handleSuccessfullAuth.bind(this);
-        this.checkUserToken = this.checkUserToken.bind(this);
+        this.handleSuccessfulAuth = this.handleSuccessfulAuth.bind(this);
+        this.isLoggedIn = this.isLoggedIn.bind(this);
     }
 
     componentDidMount() {
-        this.checkUserToken();
+        const isLoggedIn = this.isLoggedIn();
+        this.setState({ loggedIn: isLoggedIn });
     }
 
-    checkUserToken() {
-        var userToken = localStorage.getItem("userToken");
-        if (userToken) {
-            this.setState({ loggedIn: true});
-        }
+    isLoggedIn() {
+        const storedUserToken = localStorage.getItem("userToken");
+        return storedUserToken ? true : false;
     }
 
-    handleSuccessfullAuth(userToken) {
-        if (userToken) {
-            localStorage.setItem("userToken", userToken);
-            this.setState({ loggedIn: true});
-        }
+    handleSuccessfulAuth(userToken) {
+        localStorage.setItem("userToken", userToken);
+        this.setState({ loggedIn: true });
     }
 
     render() {
-        const RequireAuth = ({ children }) => {
-            var userToken = localStorage.getItem("userToken");
-            if (!userToken) {
-                console.log("userToken: "+userToken);
-                return <Redirect to="/login" handleSuccessfullAuth={this.handleSuccessfullAuth} />
-            }
-            return children;
-        };
-
         return (
             <div className="wrapper">
                 <Router>
@@ -53,11 +41,14 @@ class App extends React.Component {
                         <Route
                             path='/login'
                             render={(props) => (
-                                <Login {...props} handleSuccessfullAuth={this.handleSuccessfullAuth} />
+                                <Login {...props} handleSuccessfulAuth={this.handleSuccessfulAuth} />
                             )}
                         />
-                        <RequireAuth>
-                            <Route path="/article/:_id" component={Article} />
+                        <Route path="/article/:_id" component={Article} />
+
+                        <RequireAuth
+                            isLoggedIn={this.isLoggedIn}
+                            handleSuccessfulAuth={this.handleSuccessfulAuth}>
                         </RequireAuth>
                     </Switch>
                 </Router>
