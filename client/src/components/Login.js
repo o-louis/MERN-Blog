@@ -18,6 +18,7 @@ class Login extends React.Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        
     }
 
     componentDidMount(){
@@ -32,8 +33,8 @@ class Login extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        const { setUserToken } = React.useContext(AuthContext);
 
+        const { setUserToken } = this.context;
         login(this.state).then(response => {
             const { data } = response;
             if (data) {
@@ -49,7 +50,7 @@ class Login extends React.Component {
 
     render() {
         const { login } = this.state;
-        const referer = (props.location.state && props.location.state.referer) || '/';
+        const referer = (this.props.location.state && this.props.location.state.referer) || '/';
 
         if (login) {
             return <Redirect to={referer} />
@@ -76,5 +77,7 @@ class Login extends React.Component {
         )
     }
 }
+
+Login.contextType = AuthContext;
 
 export default Login;

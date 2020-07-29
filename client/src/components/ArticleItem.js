@@ -1,5 +1,6 @@
 import React from 'react';
 import { convertDate } from '../tools';
+import marked from 'marked';
 
 function ArticleItem(props) {
     const {
@@ -8,7 +9,16 @@ function ArticleItem(props) {
         description,
         author
     } = props.data;
-    
+        
+    const descriptionRendered = () => {
+        if (description) {
+            const markedRender = marked(description, {breaks: true});
+            return (
+                <p className="article-description" dangerouslySetInnerHTML={{__html: markedRender}} />
+            )
+        }
+    }
+
     return (
         <main>
             <div className="article-container">
@@ -17,9 +27,9 @@ function ArticleItem(props) {
                 <p className="article-date">
                     { convertDate(date) }   
                 </p>
-                <p className="article-description">
-                    { description }
-                </p>
+
+                { descriptionRendered() }
+
                 <p className="article-author">
                     { author }
                 </p>

@@ -16,6 +16,7 @@
     text-decoration: none;
     box-sizing: border-box;
     list-style-type: none;
+    font-family: Roboto, sans-serif;
 }
 
 html { 
@@ -28,7 +29,6 @@ body {
     font-size: 1.4rem;
     overflow-x: hidden;
     position: relative;
-    font-family: Roboto, sans-serif;
 }
 
 a {
@@ -50,6 +50,7 @@ main {
     --dark-grey: #242424;
     --dark-white: #ededed;
     --yellow: #f5c556;
+    --green: #00a930;
 }
 
 .wrapper {
@@ -80,7 +81,18 @@ main {
     font-size: 1.8rem;
 }
 
+.logout {
+    border: 1px solid white;
+    padding: 6px;
+    border-radius: 4px;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
 
+.logout:hover {
+    background-color: white;
+    color: black;
+}
 
 /* HOME - ARTICLES */
 
@@ -124,6 +136,32 @@ main {
     display: flex;
     justify-content: space-between;
     font-size: 1.2rem;
+}
+
+.addArticle {
+    padding:10px;
+    background-color: black;
+    color: white;
+    font-size: 1.4rem;
+    align-self: flex-start;
+    cursor: pointer;
+    border-radius: 50%;
+    position: fixed;
+    bottom: 30px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tablet-laptop {
+    display: none;
+}
+
+.addArticle:hover {
+    background-color: var(--yellow);
 }
 
 /* ARTICLE */
@@ -220,12 +258,58 @@ main {
 .connection-container h4 {
     padding: 4%;
     color: white;
-    background-color: #00a930;
+    background-color: var(--green);
     margin-top: 5%;
     border-radius: 3px;
 }
 
+.create-article-container form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+}
+
+.create-article-container input,
+.create-article-container textarea {
+    padding: 10px;
+    font-size: 1.5rem;
+    border: 1px solid var(--dark-grey);
+    border-radius: 4px
+}
+
+.create-article-container textarea {
+    margin-top: 20px;
+    height: 500px;
+    font-size: 1.7rem;
+}
+
+.create-article-container button {
+    margin-top: 20px;
+    padding: 12px;
+    text-transform: uppercase;
+    font-size: 1.7rem;
+    font-weight: 500;
+    background-color: var(--green);
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.create-article-container button:hover {
+    opacity: 0.9;
+}
+
+/* CREATE NEW ARTICLE */
+
 @media screen and (min-width: 481px) {
+    .tablet-laptop {
+        display: block;
+    }
+
+    .mobile {
+        display: none;
+    }
+
     .addArticle {
         padding:10px;
         background-color: black;
@@ -234,33 +318,21 @@ main {
         align-self: flex-start;
         border-radius: 5px;
         cursor: pointer;
+        position: relative;
+        bottom: 0;
+        right: 0;
+        width: auto;
+        height: auto;
     }
 
     .addArticle:hover {
         background-color: var(--yellow);
     }
 
-    .logout {
-        border: 1px solid white;
-        padding: 6px;
-        border-radius: 4px;
-        font-size: 1.5rem;
-        cursor: pointer;
-    }
-
-    .logout:hover {
-        background-color: white;
-        color: black;
-    }
-
     .posts-container-list {
         grid-template-columns: 50% 50%;
         grid-gap: 1.8% 1%;
     }
-
-    /* .posts-list-item {
-        margin-right: 4%;
-    } */
 
     .article-title {
         text-align: center;
@@ -278,7 +350,7 @@ main {
 }
 
 @media screen and (min-width: 769px) {
-
+    
     .navbar-list {
         padding: 2%;
     }

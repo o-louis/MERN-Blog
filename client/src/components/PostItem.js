@@ -1,6 +1,7 @@
 import React from 'react';
 import { convertDate, truncateText } from '../tools';
 import * as Constants from '../constants';
+import marked from 'marked';
 
 const PostItem = (props) => {
     const {
@@ -13,6 +14,21 @@ const PostItem = (props) => {
 
     const { index } = props.item;
 
+    const descriptionRendered = () => {
+        if (description) {
+            const markedRender = marked(description, {breaks: true});
+            return (
+                <p 
+                    className="posts-list-item-infos-description"
+                    dangerouslySetInnerHTML={{
+                        __html: truncateText(markedRender, Constants.LIMIT_DESCRIPTION)
+                    }}
+                />
+            )
+        }
+        return truncateText(description, Constants.LIMIT_DESCRIPTION);
+    }
+
     return (
         <div className="posts-list-item" key={index}>
             <a href={"/article/" + _id}>
@@ -24,9 +40,7 @@ const PostItem = (props) => {
                     <h4 className="posts-list-item-infos-title">
                         { truncateText(title, Constants.LIMIT_TITLE) }
                     </h4>
-                    <p className="posts-list-item-infos-description">
-                        { truncateText(description, Constants.LIMIT_DESCRIPTION) }
-                    </p>
+                    { descriptionRendered() }
                 </div>
 
                 <div className="posts-list-item-signature">

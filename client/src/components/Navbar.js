@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { AuthContext } from "../context/auth";
-import { Link } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
 function Logout() {
     const [logout, setLogout] = useState(false);
@@ -17,7 +17,7 @@ function Logout() {
 
     return (
         <li className="navbar-list-item">
-            <div className="navbar-list-item-link logout" to="/" onClick={loggedOut}>
+            <div className="navbar-list-item-link logout" onClick={loggedOut}>
                 Log out
             </div>
         </li>
@@ -27,7 +27,7 @@ function Logout() {
 function SignUp() {
     return (
         <li className="navbar-list-item">
-            <Link className="navbar-list-item-link" href="/sign_up">
+            <Link className="navbar-list-item-link" to="/sign_up">
                 <img src="/user.png" alt="user" />
             </Link>
         </li>
