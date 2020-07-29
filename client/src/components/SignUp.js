@@ -11,7 +11,7 @@ class SignUp extends React.Component {
             email: "",
             password: "",
             passwordConfirm: "",
-            redirectToReferrer: false,
+            registered: false,
             errorMessage: null,
         };
 
@@ -25,49 +25,50 @@ class SignUp extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
+
         createUser(this.state).then(response => {
-            if (response.data) {
-                if (response.data.success) {
-                    console.log(response.data);
-                    this.setState({ redirectToReferrer: true });
+            const { data } = response;
+            if (data) {
+                if (data.success) {
+                    this.setState({ registered: true });
                 } else {
-                    this.setState({ errorMessage: response.data.message });
+                    this.setState({ errorMessage: data.message });
                 }
             }
         });
     }
 
     render() {
-        const { redirectToReferrer } = this.state;
+        const { registered } = this.state;
 
-        if (redirectToReferrer) {
-            return <Redirect to={{
-                pathname: "/login",
-                state: { message: "You have been successfully registered" }
-            }} />
-        } else {
+        if (registered) {
             return (
-                <>
-                    <main>
-                        <div className="connection-container">
-                            <div className="connection-overlay">
-                                <div className="connection-overlay-login">
-                                    <h3>Already have an account ?</h3>
-                                    <button>
-                                        <a href="/login">Log in</a>
-                                    </button>
-                                </div>
-                            </div>
-                            <SignUpForm
-                                state={this.state}
-                                handleSubmit={this.handleSubmit}
-                                handleChange={this.handleChange}
-                            />
-                        </div>
-                    </main>
-                </>
-            );
+                <Redirect to={{
+                    pathname: "/login",
+                    state: { message: "You have been successfully registered" }
+                }} />
+            )
         }
+
+        return (
+            <main>
+                <div className="connection-container">
+                    <div className="connection-overlay">
+                        <div className="connection-overlay-login">
+                            <h3>Already have an account ?</h3>
+                            <button>
+                                <a href="/login">Log in</a>
+                            </button>
+                        </div>
+                    </div>
+                    <SignUpForm
+                        state={this.state}
+                        handleSubmit={this.handleSubmit}
+                        handleChange={this.handleChange}
+                    />
+                </div>
+            </main>
+        );
     }
 }
 

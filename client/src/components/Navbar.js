@@ -1,28 +1,50 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { AuthContext } from "../context/auth";
+import { Link } from "react-router-dom";
 
-const Navbar = (props) => {
-    const { isLoggedIn } = props;
+function Logout() {
+    const [logout, setLogout] = useState(false);
+    const { handleLogout } = React.useContext(AuthContext);
+
+    const loggedOut = () => {
+        handleLogout();
+        setLogout(false);
+    }
+
+    if (logout) {
+        return <Redirect to="/" />
+    }
+
+    return (
+        <li className="navbar-list-item">
+            <div className="navbar-list-item-link logout" to="/" onClick={loggedOut}>
+                Log out
+            </div>
+        </li>
+    )
+}
+
+function SignUp() {
+    return (
+        <li className="navbar-list-item">
+            <Link className="navbar-list-item-link" href="/sign_up">
+                <img src="/user.png" alt="user" />
+            </Link>
+        </li>
+    )
+}
+
+const Navbar = () => {
+    const { isLoggedIn } = React.useContext(AuthContext);
     return (
         <nav className="navbar">
-            <li className="navbar-list">
-                <ul className="navbar-list-item">
-                    <a className="navbar-list-item-link" href="/">MERN Blog</a>
-                </ul>
+            <ul className="navbar-list">
+                <li className="navbar-list-item">
+                    <Link className="navbar-list-item-link" to="/">MERN Blog</Link>
+                </li>
 
-                {isLoggedIn ?
-                    <ul className="navbar-list-item">
-                        <a className="navbar-list-item-link logout" href="/" onClick={props.handleLogout}>
-                            Log out
-                        </a>
-                    </ul>
-                    :
-                    <ul className="navbar-list-item">
-                        <a className="navbar-list-item-link" href="/sign_up">
-                            <img src="/user.png" alt="user" />
-                        </a>
-                    </ul>
-                }
-            </li>
+                { isLoggedIn ? <Logout /> : <SignUp /> }
+            </ul>
         </nav>
     )
 };

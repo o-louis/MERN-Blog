@@ -2,16 +2,16 @@ import axios from 'axios';
 import * as Constants from './constants';
 
 export const fetchPosts = async () => {
-    return await axios(Constants.GET_ARTICLES);
+    return await axios(Constants.REQUEST.ARTICLES);
 };
 
 export const fetchArticle = async (id) => {
-    return await axios(`${Constants.GET_ARTICLES}/${id}`);
+    return await axios(`${Constants.REQUEST.ARTICLES}/${id}`);
 };
 
 export const createUser = async (data) => {
     const { name, email, password, passwordConfirm } = data;
-    return axios.post(Constants.CREATE_USER, {
+    return axios.post(Constants.REQUEST.REGISTER, {
         name,
         email,
         password,
@@ -26,7 +26,7 @@ export const createUser = async (data) => {
 
 export const login = async (data) => {
   const { email, password } = data;
-  return axios.post(Constants.LOGIN, {
+  return axios.post(Constants.REQUEST.LOGIN, {
       email,
       password
     })
