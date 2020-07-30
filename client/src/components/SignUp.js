@@ -1,6 +1,6 @@
 import React from 'react';
 import SignUpForm from './SignUpForm';
-import { createUser } from '../requests';
+import { createUser } from '../api/requests';
 import { Redirect } from 'react-router-dom';
 
 class SignUp extends React.Component {

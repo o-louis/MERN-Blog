@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ArticleItem from './ArticleItem';
-import { fetchArticle } from '../requests';
+import { fetchArticle } from '../api/requests';
 
 function Article(props) {
     const id = props.match.params._id;

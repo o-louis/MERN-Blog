@@ -1,14 +1,34 @@
-import React, { useState } from 'react';
-import { createArticle } from '../api/requests';
-import { Redirect } from 'react-router-dom';
-import { AuthContext } from "../context/auth";
+import React, { useState, useEffect } from 'react';
+import { editArticle, fetchArticle } from '../api/requests';
+import { Redirect } from 'react-router';
 
-function NewArticle() {
+function EditArticle(props) {
+    const id = props.match.params._id;
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
+    const [isLoaded, setIsLoaded] = useState(false);
     const [error, setError] = useState("");
     const [article, setArticle] = useState(false);
-    const { user } = React.useContext(AuthContext);
+
+    useEffect(()=> {
+        const titleArticle = props.location ? props.location.state.titleArticle : "";
+        const descriptionArticle = props.location ? props.location.state.descriptionArticle : "";
+
+        if (!titleArticle || !descriptionArticle) {
+            fetchArticle(id).then(response => {
+                const { title, description } = response.data;
+                setInfos(title, description);
+            }).catch(err => console.log(err));
+        } else {
+            setInfos(titleArticle, descriptionArticle);
+        }
+    }, [id, props.location]);
+
+    const setInfos = (titleArticle, descriptionArticle) => {
+        setTitle(titleArticle);
+        setDescription(descriptionArticle);
+        setIsLoaded(true);
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -16,9 +36,8 @@ function NewArticle() {
             setError("Please field all inputs");
             return;
         }
-
         setError("");
-        createArticle({title, description, author: user.name}).then(response => {
+        editArticle({title, description, id}).then(response => {
             const { data } = response;
             if (data) {
                 if (data.success) {
@@ -30,13 +49,18 @@ function NewArticle() {
         });
     };
 
+    if (!isLoaded) {
+        return <div>Loading..</div>
+    }
+
     if (article) {
-        return <Redirect to="/" />
+        const article = `/article/${id}`;
+        return <Redirect to={article} />
     }
 
     return (
         <main className="create-article-container">
-            <h1>Write your article</h1>
+            <h1>Edit your article</h1>
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"
@@ -57,7 +81,7 @@ function NewArticle() {
                 <button>Create</button>
             </form>
         </main>
-    );
+    )
 }
 
-export default NewArticle;
+export default EditArticle;

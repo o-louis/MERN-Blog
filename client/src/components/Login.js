@@ -1,5 +1,5 @@
 import React from 'react';
-import { login } from '../requests';
+import { login } from '../api/requests';
 import { Redirect } from 'react-router-dom';
 import LoginForm from './LoginForm';
 

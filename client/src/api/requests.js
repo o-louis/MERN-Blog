@@ -1,5 +1,5 @@
 import axios from 'axios';
-import * as Constants from './constants';
+import * as Constants from '../utils/constants';
 
 export const fetchPosts = async () => {
     return await axios(Constants.REQUEST.ARTICLES);
@@ -56,6 +56,29 @@ export const getInfos = async (token) => {
       headers: {
         'Authorization': 'Bearer ' + token
       }
+    })
+    .then((response) => {
+      return response;
+    }, (error) => {
+      return error;
+    });
+}
+
+export const deleteArticle = async (id) => {
+  const article = Constants.REQUEST.DELETE_ARTICLE + id;
+  return axios.delete(article)
+    .then((response) => {
+      return response;
+    }, (error) => {
+      return error;
+    });
+}
+
+export const editArticle = async ({title, description, id}) => {
+  const article = Constants.REQUEST.EDIT_ARTICLE + id;
+  return axios.put(article, {
+      title,
+      description
     })
     .then((response) => {
       return response;

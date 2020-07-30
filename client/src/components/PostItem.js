@@ -1,6 +1,6 @@
 import React from 'react';
-import { convertDate, truncateText } from '../tools';
-import * as Constants from '../constants';
+import { convertDate, truncateText } from '../utils/tools';
+import * as Constants from '../utils/constants';
 import marked from 'marked';
 
 const PostItem = (props) => {
@@ -33,7 +33,7 @@ const PostItem = (props) => {
         <div className="posts-list-item" key={index}>
             <a href={"/article/" + _id}>
                 <div className="posts-list-item-img">
-                    <img id="image" src={"./image"+index+".jpg"} alt="unsplash" />
+                    <img id="image" src={"../src/images/image"+index+".jpg"} alt="unsplash" />
                 </div>
 
                 <div className="posts-list-item-infos">

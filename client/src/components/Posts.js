@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { fetchPosts } from '../requests';
+import { fetchPosts } from '../api/requests';
 import PostItem from './PostItem';
 import { Link } from 'react-router-dom';
 

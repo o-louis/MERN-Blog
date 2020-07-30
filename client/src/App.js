@@ -5,18 +5,21 @@ import Article from "./components/Article";
 import SignUp from "./components/SignUp";
 import Login from "./components/Login";
 import NewArticle from "./components/NewArticle";
-import Navbar from "./components/Navbar";
+import EditArticle from "./components/EditArticle";
+import Navbar from "./layouts/Navbar";
 
-import PrivateRoute from './PrivateRoute';
+import PrivateRoute from './components/PrivateRoute';
 import { AuthContext } from "./context/auth";
 
+import Loader from 'react-loader-spinner';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { getInfos } from "./requests";
+import { getInfos } from "./api/requests";
 
 class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            isLoaded: false,
             isLoggedIn: false,
             user: {
                 name: "",
@@ -31,7 +34,7 @@ class App extends React.Component {
     componentDidMount() {
         const userToken = localStorage.getItem("userToken");
         const isLoggedIn = userToken ? true : false;
-        this.setState({ isLoggedIn });
+        this.setState({ isLoggedIn, isLoaded: true });
         this.updateUser();
     }
 
@@ -76,11 +79,18 @@ class App extends React.Component {
                     <Router>
                         <Navbar />
 
-                        <Route exact path="/" component={Home} />
-                        <Route path="/sign_up" component={SignUp} />
-                        <Route exact path='/login' component={Login} />
-                        <Route path="/article/:_id" component={Article} />
-                        <Route exact path="/add/article" component={NewArticle} />
+                        {this.state.isLoaded ? (
+                            <React.Fragment>
+                                <Route path="/sign_up" component={SignUp} />
+                                <Route exact path='/login' component={Login} />
+                                <PrivateRoute exact path="/add/article" component={NewArticle} />
+                                <PrivateRoute path="/edit/article/:_id" component={EditArticle} />
+                                <Route path="/article/:_id" component={Article} />
+                                <Route exact path="/" component={Home} />
+                            </React.Fragment>
+                        ) :(
+                            <Loader type="Oval" color="#00BFFF" height={50} width={50} />
+                        )}
                     </Router>
                 </div>
             </AuthContext.Provider>
