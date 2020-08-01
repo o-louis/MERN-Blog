@@ -28,7 +28,7 @@ function SignUp() {
     return (
         <li className="navbar-list-item">
             <Link className="navbar-list-item-link" to="/sign_up">
-                <img src="/user.png" alt="user" />
+                <img src="assets/images/user.png" alt="user" />
             </Link>
         </li>
     )

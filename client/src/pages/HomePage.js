@@ -1,21 +1,28 @@
+
 import React, { useState, useEffect } from 'react';
-import { fetchPosts } from '../api/requests';
-import PostItem from './PostItem';
-import { Link } from 'react-router-dom';
+
+import PostItem from '../components/PostItem';
 
 import { AuthContext } from "../context/auth";
+import { fetchPosts } from '../global/api_article';
 
+import { Link } from 'react-router-dom';
 
-const Posts = () => {
+const Home = () => {
     const [data, setData] = useState([]);
-    const { isLoggedIn } = React.useContext(AuthContext);
 
     useEffect(() => {
         fetchPosts()
-            .then(articles => {
-                setData(articles.data);
-            });
+            .then(articles => setData(articles.data))
+            .catch(error => console.log(error));
     }, []);
+
+    return <Posts data={data} />
+};
+
+const Posts = (props) => {
+    const { data } = props;
+    const { isLoggedIn } = React.useContext(AuthContext);
 
     return (
         <main className="posts-container">
@@ -35,12 +42,12 @@ const Posts = () => {
             <div className="posts-container-list">
                 {
                     data.map((item, index) =>  {
-                        return <PostItem item={{value: item ,index}} key={index} />
+                        return <PostItem item={{value:item, index}} key={index} />
                     })
                 }
             </div>
         </main>
-    );
+    )
 }
 
-export default Posts;
+export default Home;

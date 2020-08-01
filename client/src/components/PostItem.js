@@ -1,9 +1,12 @@
 import React from 'react';
-import { convertDate, truncateText } from '../utils/tools';
-import * as Constants from '../utils/constants';
+import { convertDate, truncateText } from '../global/tools';
 import marked from 'marked';
 
 const PostItem = (props) => {
+
+    const LIMIT_TITLE = 100;
+    const LIMIT_DESCRIPTION = 145;
+
     const {
         _id,
         title,
@@ -21,24 +24,24 @@ const PostItem = (props) => {
                 <p 
                     className="posts-list-item-infos-description"
                     dangerouslySetInnerHTML={{
-                        __html: truncateText(markedRender, Constants.LIMIT_DESCRIPTION)
+                        __html: truncateText(markedRender, LIMIT_DESCRIPTION)
                     }}
                 />
             )
         }
-        return truncateText(description, Constants.LIMIT_DESCRIPTION);
+        return truncateText(description, LIMIT_DESCRIPTION);
     }
 
     return (
         <div className="posts-list-item" key={index}>
             <a href={"/article/" + _id}>
                 <div className="posts-list-item-img">
-                    <img id="image" src={"../src/images/image"+index+".jpg"} alt="unsplash" />
+                    <img id="image" src={"./assets/images/image"+index+".jpg"} alt="unsplash" />
                 </div>
 
                 <div className="posts-list-item-infos">
                     <h4 className="posts-list-item-infos-title">
-                        { truncateText(title, Constants.LIMIT_TITLE) }
+                        { truncateText(title, LIMIT_TITLE) }
                     </h4>
                     { descriptionRendered() }
                 </div>

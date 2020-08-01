@@ -1,0 +1,7 @@
+export const ARTICLES = "http://192.168.1.15:8080/articles"
+export const LOGIN =    "http://192.168.1.15:8080/users/login"
+export const GET_INFOS = "http://192.168.1.15:8080/users/infos"
+export const REGISTER = "http://192.168.1.15:8080/users/register"
+export const EDIT_ARTICLE = "http://192.168.1.15:8080/articles/edit/"
+export const CREATE_ARTICLE = "http://192.168.1.15:8080/articles/add"
+export const DELETE_ARTICLE = "http://192.168.1.15:8080/articles/delete/"

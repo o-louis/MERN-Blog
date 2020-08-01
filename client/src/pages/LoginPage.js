@@ -1,7 +1,7 @@
 import React from 'react';
-import { login } from '../api/requests';
+import LoginForm from '../components/LoginForm';
+import { login } from '../global/api_user';
 import { Redirect } from 'react-router-dom';
-import LoginForm from './LoginForm';
 
 import { AuthContext } from "../context/auth";
 
@@ -13,17 +13,16 @@ class Login extends React.Component {
             password: "",
             login: false,
             errorMessage: null,
-            success: null,
+            successfulMessage: null,
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        
     }
 
     componentDidMount(){
         if (this.props.location && this.props.location.state) {
-            this.setState({ success: this.props.location.state.message })
+            this.setState({ successfulMessage: this.props.location.state.message })
         }
     }
 
@@ -33,19 +32,19 @@ class Login extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-
-        const { setUserToken } = this.context;
-        login(this.state).then(response => {
-            const { data } = response;
-            if (data) {
-                if (data.success) {
-                    setUserToken(data.token);
-                    this.setState({ login: true });
-                } else {
-                    this.setState({ errorMessage: data.message });
+        const { handleLogin } = this.context;
+        login(this.state)
+            .then(response => {
+                const { data } = response;
+                if (data) {
+                    if (data.success) {
+                        handleLogin(data.token);
+                        this.setState({ login: true });
+                    } else {
+                        this.setState({ errorMessage: data.message });
+                    }
                 }
-            }
-        });
+            }).catch(error => console.log(error));
     }
 
     render() {
@@ -55,6 +54,7 @@ class Login extends React.Component {
         if (login) {
             return <Redirect to={referer} />
         }
+
         return (
             <main>
                 <div className="connection-container">
@@ -66,7 +66,10 @@ class Login extends React.Component {
                             </button>
                         </div>
                     </div>
-                    {this.state.success && <h4>{this.state.success}</h4>}
+
+                    {this.state.successfulMessage &&
+                        <h4>{this.state.successfulMessage}</h4>}
+
                     <LoginForm
                         state={this.state}
                         handleSubmit={this.handleSubmit}

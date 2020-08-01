@@ -1,6 +1,6 @@
 import React from 'react';
-import SignUpForm from './SignUpForm';
-import { createUser } from '../api/requests';
+import SignUpForm from '../components/SignUpForm';
+import { createUser } from '../global/api_user';
 import { Redirect } from 'react-router-dom';
 
 class SignUp extends React.Component {
@@ -25,17 +25,17 @@ class SignUp extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-
-        createUser(this.state).then(response => {
-            const { data } = response;
-            if (data) {
-                if (data.success) {
-                    this.setState({ registered: true });
-                } else {
-                    this.setState({ errorMessage: data.message });
+        createUser(this.state)
+            .then(response => {
+                const { data } = response;
+                if (data) {
+                    if (data.success) {
+                        this.setState({ registered: true });
+                    } else {
+                        this.setState({ errorMessage: data.message });
+                    }
                 }
-            }
-        });
+            }).catch(error => console.log(error));
     }
 
     render() {

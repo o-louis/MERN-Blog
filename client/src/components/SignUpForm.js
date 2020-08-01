@@ -48,11 +48,13 @@ const SignUpForm = (props) => {
                 value={passwordConfirm}
                 onChange={handleChange}/>
 
-                {errorMessage !== null ? 
-                <span className="connection-form-error">
-                    {errorMessage}
-                </span> :
-                <></>}
+                {errorMessage !== null ? (
+                    <span className="connection-form-error">
+                        {errorMessage}
+                    </span> 
+                ) : (
+                    <React.Fragment></React.Fragment>
+                )}
 
                 <input type="submit" value="Create account" className="btn-submit"/>
             </form>

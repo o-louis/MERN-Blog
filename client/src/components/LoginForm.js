@@ -31,11 +31,13 @@ const LoginForm = (props) => {
                 value={password}
                 onChange={handleChange}/>
 
-                {errorMessage !== null ? 
-                <span className="connection-form-error">
-                    {errorMessage}
-                </span> :
-                <></>}
+                {errorMessage !== null ? (
+                    <span className="connection-form-error">
+                        {errorMessage}
+                    </span> 
+                ) : (
+                    <React.Fragment></React.Fragment>
+                )}
 
                 <input type="submit" value="Log in" className="btn-submit"/>
             </form>
