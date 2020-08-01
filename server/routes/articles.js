@@ -24,7 +24,7 @@ router.get("/:_id", (req, res) => {
 
 /* ADD */
 router.post("/add", (req, res) => {
-    const { title, description, author} = req.body;
+    const { title, description, image, author} = req.body;
 
     if (!title || !description) {
         return res.send({
@@ -32,10 +32,12 @@ router.post("/add", (req, res) => {
             message: "Fields are not all filled"
         });
     }
+    const defaultImage = "/assets/images/placeholder.png";
 
     const newArticle = new Article({
         title,
         description,
+        image: image || defaultImage,
         author
     });
 
@@ -50,7 +52,7 @@ router.post("/add", (req, res) => {
 router.put("/edit/:_id", (req, res) => {
 
     const { _id } = req.params;
-    const { title, description } = req.body;
+    const { title, description, image } = req.body;
 
     if (!title || !description) {
         return res.send({
@@ -59,9 +61,12 @@ router.put("/edit/:_id", (req, res) => {
         });
     }
 
+    const defaultImage = "/assets/images/placeholder.png";
+
     const editedArticle = {
         title,
         description,
+        image: image || defaultImage,
         date: Date.now()
     };
 

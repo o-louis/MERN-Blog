@@ -12,21 +12,25 @@ const ArticleItem = (props) => {
         date,
         description,
         author,
+        image,
         _id
     } = props.data;
 
     return (
         <main>
             <div className="article-container">
-                <h1 className="article-title">{title}</h1>
 
                 <p className="article-date">
-                    { convertDate(date) }   
+                    { convertDate(date) }
                 </p>
+                <div className="article-image">
+                    <h1 className="article-title">{title}</h1>
+                    <img src={image} alt={title} />
+                </div>
 
                 <div className="article-description">
                     { isLoggedIn && user.name === author &&
-                        <UserAction id={_id} title={title} description={description} />
+                        <UserAction id={_id} title={title} description={description} image={image} />
                     }
                     <Description text={description} />
                 </div>
@@ -47,7 +51,7 @@ const Description = ({text}) => {
     return <React.Fragment></React.Fragment>;
 }
 
-const UserAction = ({ id, title, description }) => {
+const UserAction = ({ id, title, description, image }) => {
     const [deleted, setDeleted] = useState(false);
     const [edited, setEdited] = useState(false);
 
@@ -62,7 +66,7 @@ const UserAction = ({ id, title, description }) => {
         return (
             <Redirect to={{
                 pathname: article,
-                state: {titleArticle: title, descriptionArticle: description}
+                state: {titleArticle: title, descriptionArticle: description, imageArticle: image}
             }} />
         )
     }

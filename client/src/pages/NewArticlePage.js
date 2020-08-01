@@ -7,6 +7,7 @@ import { AuthContext } from "../context/auth";
 const NewArticle = () => {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
+    const [image, setImage] = useState("");
     const [error, setError] = useState("");
     const [article, setArticle] = useState(false);
     const { user } = React.useContext(AuthContext);
@@ -19,7 +20,7 @@ const NewArticle = () => {
         }
 
         setError("");
-        createArticle({title, description, author: user.name})
+        createArticle({title, description, image, author: user.name})
             .then(response => {
                 const { data } = response;
                 if (data) {
@@ -40,11 +41,14 @@ const NewArticle = () => {
         <ArticleForm 
             title={title}
             description={description}
+            image={image}
             error={error}
             mainTitle="Write your article"
             handleSubmit={handleSubmit}
             setTitle={setTitle}
+            setImage={setImage}
             setDescription={setDescription}
+            buttonText="Create"
         />
     );
 }

@@ -1,8 +1,8 @@
 import React from 'react'
 
 const ArticleForm = (props) => {
-    const { title, description, error, mainTitle } = props;
-    const { handleSubmit, setTitle, setDescription } = props;
+    const { title, description, error, mainTitle, image, buttonText } = props;
+    const { handleSubmit, setTitle, setDescription, setImage } = props;
 
     return (
         <main className="create-article-container">
@@ -15,6 +15,15 @@ const ArticleForm = (props) => {
                     onChange={(e) => setTitle(e.target.value)}
                     placeholder="Title"
                 />
+
+                <input
+                    type="text"
+                    name="image"
+                    value={image}
+                    onChange={(e) => setImage(e.target.value)}
+                    placeholder="Enter a cover image"
+                />
+
                 <textarea 
                     id="editor"
                     name="description"
@@ -24,7 +33,7 @@ const ArticleForm = (props) => {
                 />
 
                 {error && <p>{error}</p>}
-                <button>Create</button>
+                <button>{buttonText}</button>
             </form>
         </main>
     )

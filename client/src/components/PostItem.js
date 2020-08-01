@@ -12,7 +12,8 @@ const PostItem = (props) => {
         title,
         description,
         date,
-        author
+        author,
+        image
     } = props.item.value;
 
     const { index } = props.item;
@@ -36,7 +37,7 @@ const PostItem = (props) => {
         <div className="posts-list-item" key={index}>
             <a href={"/article/" + _id}>
                 <div className="posts-list-item-img">
-                    <img id="image" src={"./assets/images/image"+index+".jpg"} alt="unsplash" />
+                    <img id="image" src={image} alt="unsplash" />
                 </div>
 
                 <div className="posts-list-item-infos">

@@ -8,6 +8,7 @@ const EditArticle = (props) => {
     const id = props.match.params._id;
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
+    const [image, setImage] = useState("");
     const [isLoaded, setIsLoaded] = useState(false);
     const [error, setError] = useState("");
     const [article, setArticle] = useState(false);
@@ -15,21 +16,23 @@ const EditArticle = (props) => {
     useEffect(()=> {
         const titleArticle = props.location ? props.location.state.titleArticle : "";
         const descriptionArticle = props.location ? props.location.state.descriptionArticle : "";
+        const imageArticle = props.location ? props.location.state.imageArticle : "";
 
         if (!titleArticle || !descriptionArticle) {
             fetchArticle(id)
                 .then(response => {
-                    setArticleInfos(response.data.title, response.data.description);
+                    setArticleInfos(response.data.title, response.data.description, response.data.image);
                 }).catch(err => console.log(err));
         } else {
-            setArticleInfos(titleArticle, descriptionArticle);
+            setArticleInfos(titleArticle, descriptionArticle, imageArticle);
         }
     }, [id, props.location]);
 
 
-    const setArticleInfos = (titleArticle, descriptionArticle) => {
+    const setArticleInfos = (titleArticle, descriptionArticle, imageArticle) => {
         setTitle(titleArticle);
         setDescription(descriptionArticle);
+        setImage(imageArticle)
         setIsLoaded(true);
     };
 
@@ -40,13 +43,17 @@ const EditArticle = (props) => {
             return;
         }
         setError("");
-        editArticle({title, description, id})
+        editArticle({title, description, image, id})
             .then(response => {
+                console.log(response);
                 if (response.data) {
-                    if (response.success) {
+                    console.log("heeeeeey");
+                    if (response.data.success) {
+                        console.log("SUCEESSS");
                         setArticle(true);
+                        setIsLoaded(true);
                     } else {
-                        setError(response.message);
+                        setError(response.data.message);
                     }
                 }
             }).catch(error => console.log(error));
@@ -70,11 +77,14 @@ const EditArticle = (props) => {
         <ArticleForm 
             title={title}
             description={description}
+            image={image}
             error={error}
             mainTitle="Edit your article"
             handleSubmit={handleSubmit}
             setTitle={setTitle}
+            setImage={setImage}
             setDescription={setDescription}
+            buttonText="Edit"
         />
     )
 }
