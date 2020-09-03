@@ -40,7 +40,7 @@ const Navbar = () => {
         <nav className="navbar">
             <ul className="navbar-list">
                 <li className="navbar-list-item">
-                    <Link className="navbar-list-item-link" to="/">MERN Blog</Link>
+                    <Link className="navbar-list-item-link" to="/">Bloggie</Link>
                 </li>
 
                 { isLoggedIn ? <Logout /> : <SignUp /> }

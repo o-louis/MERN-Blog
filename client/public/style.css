@@ -43,8 +43,8 @@ img {
 }
 
 main {
-    padding: 0% 5%;
-    margin-top: 110px;
+    /* padding: 0% 5%; */
+    margin-top: 80px;
 }
 
 :root {
@@ -52,13 +52,18 @@ main {
     --dark-white: #ededed;
     --yellow: #f5c556;
     --green: #00a930;
+    --purple: #9B59F6;
 }
 
 .wrapper {
     position: relative;
     display: flex;
     flex-direction: column;
+    
     margin-bottom: 80px;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
 }
 
 /* NAVBAR */
@@ -67,14 +72,16 @@ main {
     top: 0;
     width: 100%;
     height: 60px;
-    color: white;
-    background-color: var(--dark-grey);
+    color: black;
+    background-color: white;
+    box-shadow: 0 2px 5px -5px black;
+    z-index: 100;
 }
 
 .navbar-list {
-    width: 100%;
+    margin: auto;
+    width: 85%;
     height: 100%;
-    padding: 3%;
     text-transform: uppercase;
     display: flex;
     justify-content: space-between;
@@ -83,6 +90,9 @@ main {
 
 .navbar-list-item-link {
     font-size: 1.8rem;
+    color: var(--purple);
+    font-weight: bold;
+    letter-spacing: 1.25px;
 }
 
 .logout {
@@ -101,9 +111,16 @@ main {
 /* HOME - ARTICLES */
 
 .header {
+    margin-top: 30px;
     display: flex;
     justify-content: space-between;
 }
+
+.posts-container {
+    width: 85%;
+    align-self: center;
+}
+
 .posts-container-title {
     font-size: 1.9rem;
     margin-bottom: 8%;
@@ -112,13 +129,16 @@ main {
 .posts-container-list {
     display: grid;
     grid-template-columns: 100%;
-    grid-gap: 2% 0;
+    grid-gap: 15px 0;
+    
 }
 
 .posts-list-item {
-    /* margin-bottom: 10%; */
-    background-color: var(--dark-white);
+    background-color: white;
     border-radius: 3px;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 1px 2px rgba(0,0,0,0.23);
 }
 
 .posts-list-item a  {
@@ -154,7 +174,7 @@ main {
 
 .addArticle {
     padding:10px;
-    background-color: black;
+    background-color: var(--purple);
     color: white;
     font-size: 1.4rem;
     align-self: flex-start;
@@ -175,7 +195,7 @@ main {
 }
 
 .addArticle:hover {
-    background-color: var(--yellow);
+    opacity: 0.7;
 }
 
 /* ARTICLE */
@@ -190,7 +210,8 @@ main {
     line-height: 1.3;
     position: absolute;
     text-transform: uppercase;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.7);
+    color: var(--purple);
     /* color: white; */
     padding: 20px 4px;
     font-weight: 500;
@@ -219,7 +240,7 @@ main {
     line-height: 1.7;
     font-size: 1.6rem;
     text-align: justify;
-    background-color: var(--dark-white);
+    background-color: white;
     padding: 3% 5%;
     border-radius: 4px;
     display: flex;
@@ -227,7 +248,7 @@ main {
 }
 
 .article-author {
-    margin: 10% 0%;
+    margin: 2% 0%;
 }
 
 .article-btn-actions {
@@ -238,7 +259,7 @@ main {
 .article-btn-actions button {
     padding: 10px;
     width: 66px;
-    background-color: brown;
+    background-color: var(--purple);
     color: white;
     text-transform: uppercase;
     border-radius: 4px;
@@ -253,7 +274,7 @@ main {
 
 .article-btn-actions .edit {
     margin-right: 10px;
-    background-color: rgb(57, 141, 224);
+    background-color: var(--purple);
 }
 
 /* CONNECTION ACCOUNT */
@@ -369,7 +390,7 @@ main {
     text-transform: uppercase;
     font-size: 1.7rem;
     font-weight: 500;
-    background-color: var(--green);
+    background-color: var(--purple);
     color: white;
     border-radius: 4px;
     cursor: pointer;
@@ -391,7 +412,6 @@ main {
 
     .addArticle {
         padding:10px;
-        background-color: black;
         color: white;
         font-size: 1.4rem;
         align-self: flex-start;
@@ -405,21 +425,13 @@ main {
         z-index: 0;
     }
 
-    .addArticle:hover {
-        background-color: var(--yellow);
-    }
-
     .posts-container-list {
-        grid-template-columns: 50% 50%;
-        grid-gap: 1.8% 1%;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        grid-gap: 15px;
     }
 
     .article-title {
         text-align: center;
-    }
-
-    .article-author {
-        margin: 5% 0%;
     }
 
     .connection-container {
@@ -434,14 +446,14 @@ main {
     }
 }
 
-@media screen and (min-width: 769px) {
-    
-    .navbar-list {
-        padding: 2%;
-    }
+@media screen and (min-width: 768px) {
 
+    .navbar-list {
+        max-width: 1100px;
+    }
     .posts-container-list {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        grid-gap: 15px;
     }
 
     .posts-container-title {
@@ -449,8 +461,7 @@ main {
     }
 
     .posts-container {
-        max-width: 1400px;
-        width: 100%;
+        max-width: 1100px;
     }
 
     .article-title {
